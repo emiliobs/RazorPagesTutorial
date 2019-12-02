@@ -20,14 +20,14 @@ namespace RazorPageTutorialService
                    Name = "Emilio", 
                    Department= Department.IT, 
                    Email = "emilio@gmail.com", 
-                   PhotoPath="emilio.pmg",
+                   PhotoPath="perro.jpg",
                },
                new Employee()
                {
                    Id = 2, Name = "Mary",
                    Department= Department.HR,
                    Email = "mary@gmail.com",
-                   PhotoPath="mary.pmg",
+                   PhotoPath="",
                },
                new Employee()
                {
@@ -35,7 +35,7 @@ namespace RazorPageTutorialService
                    Name = "Sara",
                    Department= Department.None,
                    Email = "sara@gmail.com",
-                   PhotoPath="sara.pmg",
+                   PhotoPath="gato.jpeg",
                },
                new Employee()
                {
@@ -43,7 +43,7 @@ namespace RazorPageTutorialService
                    Name = "Pier",
                    Department= Department.Payroll,
                    Email = "pier@gmail.com",
-                   PhotoPath="pier.pmg",
+                   PhotoPath="boa.jpeg",
                },
                new Employee()
                {
@@ -51,7 +51,15 @@ namespace RazorPageTutorialService
                    Name = "Chelsay",
                    Department= Department.IT,
                    Email = "chalsay@gmail.com",
-                   PhotoPath="chalsay.pmg",
+                   PhotoPath="airpads.jpg",
+               },
+                new Employee()
+               {
+                  Id = 1,
+                   Name = "Lorena",
+                   Department= Department.Payroll,
+                   Email = "lorena@gmail.com",
+                   PhotoPath="minipig1.jpg",
                },
             };
         }
