@@ -1,6 +1,7 @@
 ﻿using RazorPageTutorialModels.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace RazorPageTutorialService
@@ -67,5 +68,8 @@ namespace RazorPageTutorialService
         {
             return _employeesList;
         }
+
+        public Employee GetemployeById(int id) => _employeesList.FirstOrDefault(e => e.Id == id);
+       
     }
 }
