@@ -9,20 +9,19 @@ using RazorPageTutorialService;
 
 namespace RazorPagesTutorial
 {
-    public class DetailsModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly IEmployeeRepository _employeeRepository;
 
-        public Employee Employee { get; set; }
-
-        public DetailsModel(IEmployeeRepository employeeRepository)
+        public EditModel(IEmployeeRepository  employeeRepository)
         {
             _employeeRepository = employeeRepository;
         }
 
-        public  IActionResult  OnGet(int id )
-        {             
-
+        
+        public Employee Employee { get; set; }
+        public IActionResult OnGet(int id)
+        {
             Employee = _employeeRepository.GetemployeById(id);
 
             if (Employee == null)
@@ -31,8 +30,6 @@ namespace RazorPagesTutorial
             }
 
             return Page();
-
-
         }
     }
 }

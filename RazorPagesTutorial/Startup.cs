@@ -28,13 +28,15 @@ namespace RazorPagesTutorial
 
 
             services.AddRazorPages();
-            services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<MockEmployeeRepository>();
 
             services.Configure<RouteOptions>(options => 
             {
                 options.LowercaseUrls = true;
                 options.LowercaseQueryStrings = true;
                 options.AppendTrailingSlash = true;
+                options.ConstraintMap.Add("even", typeof(EventConstraints));
             });
 
         }

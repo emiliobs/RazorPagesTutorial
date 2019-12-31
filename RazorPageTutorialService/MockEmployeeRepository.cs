@@ -6,21 +6,26 @@ using System.Text;
 
 namespace RazorPageTutorialService
 {
-    public class MockEmployeeRepository : IEmployeeRepository
+    public class MockEmployeeRepository 
     {
 
         private List<Employee> _employeesList;
 
         public MockEmployeeRepository()
         {
-            _employeesList = new List<Employee>() 
+            _employeesList = new List<Employee>();
+        }
+
+        public List<Employee> EmployeeList()
+        {
+            _employeesList = new List<Employee>()
             {
                new Employee()
                {
                   Id = 1,
-                   Name = "Emilio", 
-                   Department= Department.IT, 
-                   Email = "emilio@gmail.com", 
+                   Name = "Emilio",
+                   Department= Department.IT,
+                   Email = "emilio@gmail.com",
                    PhotoPath="perro.jpg",
                },
                new Employee()
@@ -40,7 +45,7 @@ namespace RazorPageTutorialService
                },
                new Employee()
                {
-                  Id = 4, 
+                  Id = 4,
                    Name = "Pier",
                    Department= Department.Payroll,
                    Email = "pier@gmail.com",
@@ -48,7 +53,7 @@ namespace RazorPageTutorialService
                },
                new Employee()
                {
-                  Id = 1,
+                  Id = 5,
                    Name = "Chelsay",
                    Department= Department.IT,
                    Email = "chalsay@gmail.com",
@@ -56,20 +61,20 @@ namespace RazorPageTutorialService
                },
                 new Employee()
                {
-                  Id = 1,
+                  Id = 6,
                    Name = "Lorena",
                    Department= Department.Payroll,
                    Email = "lorena@gmail.com",
                    PhotoPath="minipig1.jpg",
                },
             };
-        }
-        public IEnumerable<Employee> GetAllEmployees()
-        {
+
             return _employeesList;
+
         }
 
-        public Employee GetemployeById(int id) => _employeesList.FirstOrDefault(e => e.Id == id);
+     
+        
        
     }
 }
