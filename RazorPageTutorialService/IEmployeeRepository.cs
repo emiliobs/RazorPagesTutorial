@@ -10,5 +10,8 @@ namespace RazorPageTutorialService
         IEnumerable<Employee> GetAllEmployees();
 
         Employee GetemployeById(int id);
+         Employee Update(Employee employee);
+
+        
     }
 }

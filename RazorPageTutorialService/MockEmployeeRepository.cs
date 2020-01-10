@@ -6,17 +6,12 @@ using System.Text;
 
 namespace RazorPageTutorialService
 {
-    public class MockEmployeeRepository 
+    public class MockEmployeeRepository   : IEmployeeRepository
     {
 
         private List<Employee> _employeesList;
 
         public MockEmployeeRepository()
-        {
-            _employeesList = new List<Employee>();
-        }
-
-        public List<Employee> EmployeeList()
         {
             _employeesList = new List<Employee>()
             {
@@ -69,12 +64,34 @@ namespace RazorPageTutorialService
                },
             };
 
-            return _employeesList;
-
+           
         }
 
-     
-        
        
+
+        public IEnumerable<Employee> GetAllEmployees()
+        {
+            return _employeesList;
+        }
+
+        public Employee GetemployeById(int id)
+        {
+            return _employeesList.FirstOrDefault(e => e.Id == id);
+        }
+
+        public Employee Update(Employee editEmployee)
+        {
+            var employee = _employeesList.FirstOrDefault(e=> e.Id == editEmployee.Id);
+
+            if (employee != null)
+            {
+                employee.Name = editEmployee.Name;
+                employee.Email = editEmployee.Email;
+                employee.Department = editEmployee.Department;
+                employee.PhotoPath = editEmployee.PhotoPath;
+            }
+
+            return employee;
+        }
     }
 }

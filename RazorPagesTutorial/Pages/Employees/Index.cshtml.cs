@@ -17,6 +17,7 @@ namespace RazorPagesTutorial
 
         public IndexModel(IEmployeeRepository employeeRepository)
         {
+            
             _employeeRepository = employeeRepository;
         }
 

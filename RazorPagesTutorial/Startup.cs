@@ -28,8 +28,9 @@ namespace RazorPagesTutorial
 
 
             services.AddRazorPages();
-            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-            services.AddScoped<MockEmployeeRepository>();
+
+            services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
+
 
             services.Configure<RouteOptions>(options => 
             {
