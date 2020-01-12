@@ -27,6 +27,10 @@ namespace RazorPagesTutorial
 
         [BindProperty]
         public IFormFile Photo { get; set; }
+        
+        [BindProperty]
+        public bool Notify { get; set; }
+        public string Message { get; set; }
 
         public IActionResult OnGet(int id)
         {
@@ -60,7 +64,6 @@ namespace RazorPagesTutorial
             return RedirectToPage("Index");
         }
 
-
         private string processUploadFile()
         {
             var uniqueFileName = string.Empty;
@@ -78,6 +81,20 @@ namespace RazorPagesTutorial
             }
 
             return uniqueFileName;
+        }
+
+        public void OnPostUpdateNotificationPreferences(int id)
+        {
+            if (Notify)
+            {
+                Message = "Thank you for turning on notification.";
+            }
+            else
+            {
+                Message = "You have turned off email notification";
+            }
+
+            Employee = _employeeRepository.GetemployeById(id);
         }
     }
 }
