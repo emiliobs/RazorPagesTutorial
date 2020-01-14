@@ -14,6 +14,9 @@ namespace RazorPagesTutorial
         private readonly IEmployeeRepository _employeeRepository;
 
         public Employee Employee { get; set; }
+        
+        [TempData]
+        public string Message { get; set; }
 
         public DetailsModel(IEmployeeRepository employeeRepository)
         {

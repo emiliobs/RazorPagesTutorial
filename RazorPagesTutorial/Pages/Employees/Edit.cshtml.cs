@@ -83,7 +83,7 @@ namespace RazorPagesTutorial
             return uniqueFileName;
         }
 
-        public void OnPostUpdateNotificationPreferences(int id)
+        public IActionResult OnPostUpdateNotificationPreferences(int id)
         {
             if (Notify)
             {
@@ -94,7 +94,11 @@ namespace RazorPagesTutorial
                 Message = "You have turned off email notification";
             }
 
-            Employee = _employeeRepository.GetemployeById(id);
+            TempData["message"] = Message;
+
+            return RedirectToPage("Details", new { id = id});
+
+            //Employee = _employeeRepository.GetemployeById(id);
         }
     }
 }

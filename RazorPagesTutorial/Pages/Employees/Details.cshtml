@@ -1,4 +1,4 @@
-﻿@page 
+﻿@page "/employees/view/{id:min(1)}"
 
 @model RazorPagesTutorial.DetailsModel
 @{
@@ -6,6 +6,18 @@
     ViewData["Title"] = "Details";
     var photoPath = string.Empty;
 
+    <h1>Details</h1>
+    <hr />
+    <div class="row justify-content-center m-1">
+        @if (Model.Message != null)
+        {
+            <div class="col-sm-8">
+                <div class="alert alert-primary">
+                    @Model.Message
+                </div>
+            </div> 
+        }
+    </div>
 
     if (!string.IsNullOrEmpty(Model.Employee.PhotoPath))
     {
@@ -18,9 +30,9 @@
     }
 
 }
-<h1>Details</h1>
 
-<div class="row justify-content-center m-3">
+
+<div class="row justify-content-center m-1">
     <div class="col-sm-8">
         <div class="card">
             
