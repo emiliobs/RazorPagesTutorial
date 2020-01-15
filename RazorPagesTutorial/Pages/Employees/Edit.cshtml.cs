@@ -21,8 +21,9 @@ namespace RazorPagesTutorial
         {
             _employeeRepository = employeeRepository;
             _webHostEnvironment = webHostEnvironment;
-        }                                                
-        
+        }
+
+        [BindProperty]
         public Employee Employee { get; set; }
 
         [BindProperty]
@@ -44,24 +45,29 @@ namespace RazorPagesTutorial
             return Page();
         }
 
-        public IActionResult OnPost(Employee employee)
+        public IActionResult OnPost()
         {
 
-            if (Photo != null)
+            if (ModelState.IsValid)
             {
-
-                if (employee.PhotoPath != null)
+                if (Photo != null)
                 {
-                    var filePath = Path.Combine(_webHostEnvironment.WebRootPath,"Images", employee.PhotoPath);
-                    System.IO.File.Delete(filePath);
+
+                    if (Employee.PhotoPath != null)
+                    {
+                        var filePath = Path.Combine(_webHostEnvironment.WebRootPath, "Images", Employee.PhotoPath);
+                        System.IO.File.Delete(filePath);
+                    }
+
+                    Employee.PhotoPath = processUploadFile();
                 }
 
-                employee.PhotoPath = processUploadFile();
+                Employee = _employeeRepository.Update(Employee);
+
+                return RedirectToPage("Index"); 
             }
 
-            Employee =  _employeeRepository.Update(employee);
-
-            return RedirectToPage("Index");
+            return Page();
         }
 
         private string processUploadFile()
