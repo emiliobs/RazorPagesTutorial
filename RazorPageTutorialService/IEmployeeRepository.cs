@@ -9,7 +9,7 @@ namespace RazorPageTutorialService
         Employee GetemployeById(int id);
         Employee Update(Employee employee);
         Employee Add(Employee newEmployee);
-
+        Employee Delete(int id);
 
     }
 }
