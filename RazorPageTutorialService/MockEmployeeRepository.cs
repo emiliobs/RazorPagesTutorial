@@ -86,6 +86,15 @@ namespace RazorPageTutorialService
             return employeeToDelete;
         }
 
+        public IEnumerable<DeptHeadCount> EmployeeCountByDepartment()
+        {
+           return _employeesList.GroupBy(e => e.Department)
+                .Select(g => new DeptHeadCount { 
+                    Department = g.Key.Value,
+                    Count = g.Count()
+            }).ToList();
+        }
+
         public IEnumerable<Employee> GetAllEmployees()
         {
             return _employeesList;
