@@ -1,4 +1,5 @@
-﻿@page 
+﻿@page
+
 @model RazorPagesTutorial.IndexModel
 @{
     ViewData["Title"] = "Employees";
@@ -8,17 +9,20 @@
 
 }
 
-@await Component.InvokeAsync("HeadCount")
-    <hr />
+<vc:head-count department-name="@null"></vc:head-count>
+
+@*@await Component.InvokeAsync("HeadCount")*@
+
+<hr />
 <h1>Employees</h1>
 @*<h3>@Model.Employees.Count()</h3>*@
 
 <div class="card-deck">
     @foreach (var employee in Model.Employees)
     {
-       
-        <partial name="_DisplayEmployeePartial" model="employee" view-data="ViewData"/>
-       
+
+        <partial name="_DisplayEmployeePartial" model="employee" view-data="ViewData" />
+
     }
 
 </div>
