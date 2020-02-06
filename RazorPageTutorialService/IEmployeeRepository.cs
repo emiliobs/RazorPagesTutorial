@@ -5,6 +5,7 @@ namespace RazorPageTutorialService
 {
     public interface IEmployeeRepository
     {
+        IEnumerable<Employee> Search(string searchTem);
         IEnumerable<Employee> GetAllEmployees();
         Employee GetemployeById(int id);
         Employee Update(Employee employee);

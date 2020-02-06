@@ -113,6 +113,16 @@ namespace RazorPageTutorialService
             return _employeesList.FirstOrDefault(e => e.Id == id);
         }
 
+        public IEnumerable<Employee> Search(string searchTem)
+        {
+            if (string.IsNullOrEmpty(searchTem))
+            {
+                return _employeesList;
+            }
+
+            return _employeesList.Where(e => e.Name.Contains(searchTem) || e.Email.Contains(searchTem));
+        }
+
         public Employee Update(Employee editEmployee)
         {
             var employee = _employeesList.FirstOrDefault(e=> e.Id == editEmployee.Id);
