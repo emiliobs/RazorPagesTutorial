@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using RazorPageTutorialModels.Models;
 using System;
 using System.Collections.Generic;
@@ -18,8 +19,13 @@ namespace RazorPageTutorialService
 
         public Employee Add(Employee newEmployee)
         {
-            _context.Employees.Add(newEmployee);
-            _context.SaveChanges();
+            //_context.Employees.Add(newEmployee);
+            //_context.SaveChanges();
+            _context.Database.ExecuteSqlRaw("spInsertEmployee {0}, {1}, {2}, {3}", 
+                                            newEmployee.Name,
+                                            newEmployee.Email,
+                                            newEmployee.PhotoPath,
+                                            newEmployee.Department);
             return newEmployee;
         }
 
@@ -54,13 +60,18 @@ namespace RazorPageTutorialService
 
         public IEnumerable<Employee> GetAllEmployees()
         {
-            return _context.Employees;
+
+            return _context.Employees.FromSqlRaw<Employee>("Select * From EMployees").OrderBy(e => e.Name);
+
+            //return _context.Employees;
         }
 
         public Employee GetemployeById(int id)
         {
+            SqlParameter parameter = new SqlParameter("@Id", id);
             //return _context.Employees.Find(id);
-            return _context.Employees.FromSqlRaw<Employee>($"spGetEmployeeById {id}").ToList().FirstOrDefault();
+            return _context.Employees.FromSqlRaw<Employee>("spGetEmployeeById @Id", parameter).ToList().FirstOrDefault();
+            //return _context.Employees.FromSqlRaw<Employee>($"spGetEmployeeById {id}").ToList().FirstOrDefault();
         }
 
         public IEnumerable<Employee> Search(string searchTem)
