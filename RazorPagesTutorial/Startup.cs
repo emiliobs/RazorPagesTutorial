@@ -30,12 +30,13 @@ namespace RazorPagesTutorial
 
             services.AddRazorPages();
 
-            services.AddDbContextPool<AppDbContext>(options => 
+            services.AddDbContext<AppDbContext>(options => 
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
+           // services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
+            services.AddScoped<IEmployeeRepository, SQLEmployeeRepository>();
 
 
             services.Configure<RouteOptions>(options => 
